@@ -26,7 +26,6 @@ end
 get('/volunteer/:id') do
   @volunteer = Volunteer.find(params[:id].to_i)
   @project = Project.find(@volunteer.project_id)
-  @volunteer.save
   erb(:volunteers)
 end
 

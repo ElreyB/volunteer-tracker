@@ -22,6 +22,12 @@ class Volunteer
     @id = save_return_id.first['id'].to_i
   end
 
+  # def update(args)
+  #   @id = self.id
+  #   @name = args[:name]
+  #   DB.exec("UPDATE volunteers SET name = '#{@name}' WHERE id = #{@id};")
+  # end
+
   def ==(other_volunteer)
     self.id == other_volunteer.id &&
     self.name == other_volunteer.name &&
