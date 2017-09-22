@@ -12,12 +12,18 @@ class Project
   end
 
   def self.find(id)
-    project = DB.exec("SELECT * FROM projects WHERE id = #{id}")
+    project = DB.exec("SELECT * FROM projects WHERE id = #{id};")
     map_projects(project)
   end
 
+  def update(args)
+    @title = args[:title]
+    @id = self.id
+    DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id};")
+  end
+
   def save
-    save_return_id = DB.exec("INSERT INTO projects (title) values ('#{@title}') RETURNING id")
+    save_return_id = DB.exec("INSERT INTO projects (title) values ('#{@title}') RETURNING id;")
     @id = save_return_id.first['id'].to_i
   end
 
