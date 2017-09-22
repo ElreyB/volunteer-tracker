@@ -53,6 +53,13 @@ patch('/projects/:id/edit') do
   redirect '/'
 end
 
+patch('/volunteers/:id/edit') do
+  @volunteer = Volunteer.find(params[:id].to_i)
+  @project = Project.find(@volunteer.project_id)
+  @volunteer.update({name: params['name']})
+  erb(:volunteers)
+end
+
 delete('/projects/:id/edit') do
   @project = Project.find(params[:id].to_i)
   @project.delete

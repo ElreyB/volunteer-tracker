@@ -1,0 +1,6 @@
+<h1><%= @volunteer.title %></h1>
+<form class="" action="/projects/<%= @project.id %>/edit" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="text" name="title" class="form-control" placeholder="Project New Title">
+  <button type="submit" class="btn">Update Project Name</button>
+</form>
