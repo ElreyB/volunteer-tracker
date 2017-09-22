@@ -16,6 +16,11 @@ class Project
     map_projects(project)
   end
 
+  def volunteers
+    volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{self.id};")
+    map_volunteers(volunteers)
+  end
+
   def update(args)
     @title = args[:title]
     @id = self.id
