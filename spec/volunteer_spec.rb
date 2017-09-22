@@ -55,12 +55,12 @@ describe Volunteer do
     end
   end
 
-  # describe '#update' do
-  #   it 'allows a user to update a volunteer' do
-  #     volunteer = Volunteer.new({name: 'Sam', project_id: 1, id: nil})
-  #     volunteer.save
-  #     volunteer.update({name: 'Elrey', project_id: 1, id: nil})
-  #     expect(volunteer.name).to eq "Elrey"
-  #   end
-  # end
+  describe '#update' do
+    it 'allows a user to update a volunteer' do
+      volunteer = Volunteer.new({name: 'Sam', project_id: 1, id: nil})
+      volunteer.save
+      volunteer.update({name: 'Elrey', project_id: 1, id: nil})
+      expect(volunteer.name).to eq "Elrey"
+    end
+  end
 end
