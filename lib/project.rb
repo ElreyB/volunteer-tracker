@@ -27,6 +27,10 @@ class Project
     @id = save_return_id.first['id'].to_i
   end
 
+  def delete
+    DB.exec("DELETE FROM projects WHERE id = #{self.id};")
+  end
+
   def ==(other_project)
     self.id == other_project.id &&
     self.title == other_project.title
