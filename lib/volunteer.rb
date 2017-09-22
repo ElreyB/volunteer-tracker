@@ -7,9 +7,25 @@ class Volunteer
     @project_id = args.fetch(:id){ nil }
   end
 
+  def self.all
+    volunteers = DB.exec("SELECT * FROM volunteers;")
+    map_volunteers(volunteers)
+  end
+
   def ==(other_volunteer)
     self.id == other_volunteer.id &&
     self.name == other_volunteer.name &&
     self.project_id == other_volunteer.project_id
+  end
+
+  #helper method
+  def self.map_volunteers(volunteers)
+    volunteers.map do |volunteer|
+      Volunteer.new({
+        id: volunteer['id'].to_i,
+        name: volunteer['name'],
+        project_id: volunteer['project_id'].to_i
+        })
+    end
   end
 end
