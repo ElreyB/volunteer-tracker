@@ -3,10 +3,12 @@
   <% @project.volunteers.each do |volunteer| %>
     <ul>
       <li>
-        <a href="/volunteer/<%= volunteer.id%>"><%= volunteer.name %></a>
+        <a href="/volunteer/<%= volunteer.id %>"><%= volunteer.name %></a>
       </li>
     </ul>
   <% end %>
+<% else %>
+  <h3>No volunteers for this project.</h3>
 <% end %>
 <a href="/projects/<%= @project.id %>/edit"><button type="button" class="btn">Edit Project</button></a>
 <a href="/"><button type="button" class="btn">Home</button></a>
