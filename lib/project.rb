@@ -11,6 +11,11 @@ class Project
     map_projects(projects)
   end
 
+  def self.find(id)
+    project = DB.exec("SELECT * FROM projects WHERE id = #{id}")
+    map_projects(project)
+  end
+
   def save
     save_return_id = DB.exec("INSERT INTO projects (title) values ('#{@title}') RETURNING id")
     @id = save_return_id.first['id'].to_i
