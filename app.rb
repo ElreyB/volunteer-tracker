@@ -18,9 +18,8 @@ get('/projects/:id') do
   erb(:projects)
 end
 
-get('/edit/:id') do
-  id = params[:id].to_i
-  @project = Project.find(id)
+get('/projects/:id/edit') do
+  @project = Project.find(params[:id].to_i)
   erb(:edit_project)
 end
 
@@ -31,11 +30,17 @@ post('/projects') do
   redirect '/'
 end
 
-patch('/edit/:id') do
+patch('/projects/:id/edit') do
   id = params[:id].to_i
   # binding.pry
   @project = Project.find(id)
   new_title = params['title']
   @project.update({title: new_title})
+  redirect '/'
+end
+
+delete('/projects/:id/edit') do
+  @project = Project.find(params[:id].to_i)
+  @project.delete
   redirect '/'
 end
