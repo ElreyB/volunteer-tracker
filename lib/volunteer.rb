@@ -4,12 +4,17 @@ class Volunteer
   def initialize(args)
     @id = args.fetch(:id){ nil }
     @name = args[:name]
-    @project_id = args.fetch(:id){ nil }
+    @project_id = args[:project_id]
   end
 
   def self.all
     volunteers = DB.exec("SELECT * FROM volunteers;")
     map_volunteers(volunteers)
+  end
+
+  def save
+    save_return_id = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")
+    @id = save_return_id.first['id'].to_i
   end
 
   def ==(other_volunteer)

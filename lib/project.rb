@@ -23,7 +23,7 @@ class Project
   end
 
   def save
-    save_return_id = DB.exec("INSERT INTO projects (title) values ('#{@title}') RETURNING id;")
+    save_return_id = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
     @id = save_return_id.first['id'].to_i
   end
 
