@@ -1,9 +1,4 @@
-<% if @projects.any? %>
-  <% @projects.each do |project| %>
-    <ul>
-      <li><a href="/projects/<%= project.id %>"> <%= project.title %> </a></li>
-    </ul>
-  <% end %>
-<% else %>
-  <h3>There are currently no projects.</h3>
-<% end %>
+<h1> <%= @project.title %> </h1>
+<a href="/edit/<%= @project.id %>"><button type="button" class="btn">Edit Project</button></a>
+
+<a href="/"><button type="button" class="btn">Home</button></a>

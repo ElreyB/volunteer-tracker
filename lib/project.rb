@@ -8,12 +8,12 @@ class Project
 
   def self.all
     projects = DB.exec("SELECT * FROM projects;")
-    map_projects(projects)
+    Project.map_projects(projects)
   end
 
   def self.find(id)
     project = DB.exec("SELECT * FROM projects WHERE id = #{id};")
-    Project.map_projects(project)
+    Project.map_projects(project).first
   end
 
   def volunteers
