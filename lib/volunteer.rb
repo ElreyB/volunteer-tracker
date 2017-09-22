@@ -12,6 +12,11 @@ class Volunteer
     map_volunteers(volunteers)
   end
 
+  def self.find(id)
+    volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{id}")
+    map_volunteers(volunteer).first
+  end
+
   def save
     save_return_id = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")
     @id = save_return_id.first['id'].to_i
