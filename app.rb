@@ -23,11 +23,28 @@ get('/projects/:id/edit') do
   erb(:edit_project)
 end
 
+get('/volunteer/:id') do
+  @volunteer = Volunteer.find(params[:id].to_i)
+  @project = Project.find(@volunteer.project_id)
+  @project.update
+  @volunteer.save
+  erb(:volunteers)
+end
+
 post('/projects') do
-  title = params['title']
-  project = Project.new({title: title})
-  project.save
+  if !params['title'].empty?
+    project = Project.new({title: params['title']})
+    project.save
+  end
   redirect '/'
+end
+
+post('/projects/:id/volunteer') do
+  @project = Project.find(params[:id].to_i)
+  @project.save
+  volunteer = Volunteer.new({name: params['name'], project_id: @project.id})
+  volunteer.save
+  erb(:projects)
 end
 
 patch('/projects/:id/edit') do
