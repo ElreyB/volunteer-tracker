@@ -11,6 +11,11 @@ class Project
     map_projects(projects)
   end
 
+  def save
+    save_return_id = DB.exec("INSERT INTO projects (title) values ('#{@title}') RETURNING id")
+    @id = save_return_id.first['id'].to_i
+  end
+
   def ==(other_project)
     self.id == other_project.id &&
     self.title == other_project.title
