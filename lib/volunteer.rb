@@ -9,12 +9,12 @@ class Volunteer
 
   def self.all
     volunteers = DB.exec("SELECT * FROM volunteers;")
-    map_volunteers(volunteers)
+    Volunteer.map_volunteers(volunteers)
   end
 
   def self.find(id)
     volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{id}")
-    map_volunteers(volunteer).first
+    Volunteer.map_volunteers(volunteer).first
   end
 
   def save

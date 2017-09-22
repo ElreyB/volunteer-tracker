@@ -13,12 +13,12 @@ class Project
 
   def self.find(id)
     project = DB.exec("SELECT * FROM projects WHERE id = #{id};")
-    map_projects(project)
+    Project.map_projects(project)
   end
 
   def volunteers
     volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{self.id};")
-    map_volunteers(volunteers)
+    Volunteer.map_volunteers(volunteers)
   end
 
   def update(args)
